@@ -11,7 +11,7 @@ gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'webrick'
 gem 'selenium-webdriver'
-
+gem 'pg'
 group :developement, :test do 
   gem 'rubocop', "1.20"
 end 

@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'sinatra/reloader' if development?
+require 'pg'
 require_relative './lib/bookmark'
 
 class Bookmarks < Sinatra::Base
