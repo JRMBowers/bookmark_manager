@@ -37,4 +37,12 @@ class Bookmark
     connection.exec_params("DELETE FROM bookmarks WHERE id = $1;", [id])
   end 
 
+  def self.ammend(id:, title:, url:)
+    if ENV['RACK_ENV'] == "test"
+      connection = PG.connect(dbname: 'bookmark_manager_test')
+    else   
+      connection = PG.connect(dbname: 'bookmark_manager')
+    end 
+    connection.exec_params("UPDATE bookmarks SET title = $1, url = $2 WHERE id = $3;", [title,url,id])
+  end   
 end

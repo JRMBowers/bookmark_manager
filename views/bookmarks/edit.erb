@@ -1,0 +1,12 @@
+<form action="/bookmarks/<%= @bookmark_id %>" method="post">
+  <input type="hidden" name="_method" value="PATCH" />
+  <p style="display: inline;">URL:</p>
+  <input type="text" name="url" />
+  <p style="display: inline;">Title:</p>
+  <input type="text" name="title" />
+  <input type="submit" value="Submit"/>
+</form>
+
+<form action="/bookmarks" method="get">
+  <input type="submit" value="Return to Bookmarks">
+</form>

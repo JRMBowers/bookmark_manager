@@ -49,5 +49,18 @@ describe Bookmark do
 
   end 
 
+  describe '.ammend' do 
+
+    it 'can ammend bookmarks' do 
+      
+      bookmark = Bookmark.add_bookmark(url: 'http://www.makersacademy.com', title: 'Makers')
+      Bookmark.ammend(id: bookmark.id, title: 'Google', url: 'http://www.google.com')
+
+      expect(Bookmark.all.first.title).to eq "Google" 
+
+    end 
+
+  end 
+
 end 
 
