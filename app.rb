@@ -4,7 +4,8 @@ require 'pg'
 require_relative './lib/bookmark'
 
 class Bookmarks < Sinatra::Base
-  
+  enable :sessions, :method_override
+
   get '/bookmarks' do 
     @bookmarks = Bookmark.all
 
@@ -19,6 +20,12 @@ class Bookmarks < Sinatra::Base
     bookmark = params[:bookmark] 
     title = params[:title]
     Bookmark.add_bookmark(url: bookmark, title: title)
+    redirect '/bookmarks'
+  end 
+
+  delete '/bookmarks/:id' do 
+    p params[:id]
+    Bookmark.delete(id: params[:id])
     redirect '/bookmarks'
   end 
 

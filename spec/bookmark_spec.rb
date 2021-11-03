@@ -1,12 +1,14 @@
 require 'bookmark.rb'
 require 'database_helpers'
 describe Bookmark do 
+
+  before(:all) do 
+    connection = PG.connect(dbname: 'bookmark_manager_test')
+  end 
   
   describe '.all' do 
 
     it 'returns a list of bookmarks' do 
-
-      connection = PG.connect(dbname: 'bookmark_manager_test')
       
       bookmarktest = Bookmark.add_bookmark(url: 'http://www.makersacademy.com', title: 'Makers')
       Bookmark.add_bookmark(url: 'http://www.destroyallsoftware.com', title: 'DestroyAllSoftware')
@@ -27,11 +29,22 @@ describe Bookmark do
 
     it 'can add a bookmark' do 
 
-      connection = PG.connect(dbname: 'bookmark_manager_test')
       bookmark = Bookmark.add_bookmark(url: "http://www.github.com", title: "github")
       expect(bookmark.title).to include('github')
       expect(bookmark.url).to include('http://www.github.com')
 
+    end 
+
+  end 
+
+  describe '.delete' do 
+
+    it 'can delete a bookmark' do 
+
+      bookmark = Bookmark.add_bookmark(url: 'http://www.makersacademy.com', title: 'Makers')
+      Bookmark.delete(id: bookmark.id)
+
+      expect(Bookmark.all.length).to eq 0
     end 
 
   end 
