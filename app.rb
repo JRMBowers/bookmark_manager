@@ -11,6 +11,10 @@ class Bookmarks < Sinatra::Base
     erb :'bookmarks/index'
   end 
 
+  get '/newbookmark_page' do 
+    erb :'bookmarks/newbookmark'
+  end 
+
   post '/add_bookmark' do 
     bookmark = params[:bookmark] 
     title = params[:title]

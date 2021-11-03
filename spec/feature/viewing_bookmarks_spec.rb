@@ -17,6 +17,7 @@ end
 feature 'Adding bookmarks' do 
   scenario 'As a user I can add a bookmark and a title' do 
     visit("/bookmarks")
+    click_on('Add New Bookmark')
     fill_in('bookmark', with: 'http://www.makersacademy.com' )
     fill_in('title', with: 'MakersAcademy' )
     click_on('Submit Bookmark')
